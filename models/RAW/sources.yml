@@ -22,3 +22,21 @@ sources:
         description: "Raw membership account transaction header table replicated via Precisely"
         identifier: RAW_user_defined_codes_f0005
         quote: true
+
+  - name: domo
+    database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
+    schema: SEFERNANDEZ
+    quoting:
+      identifier: true
+    tables:
+      - name: DICT_club_and_country_names
+        description: "Club and country names dictionary table"
+        identifier: DICT_club_and_country_names
+        quote: true
+    tables:
+      - name: DICT_exchange_rates
+        description: "Exchange rates dictionary table"
+        identifier: DICT_exchange_rates
+        quote: true
+
+

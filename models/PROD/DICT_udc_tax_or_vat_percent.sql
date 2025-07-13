@@ -1,4 +1,4 @@
-/**{{ config(
+{{ config(
     alias='DICT_udc_tax_or_vat_percent',
     materialized='view'
 ) }}
@@ -42,12 +42,6 @@ select
     tp.Tax_Percent as "Tax_Percent"
 from tax_type tt
 left join tax_percent tp
-    on tt.Company = tp.Company**/
+    on tt.Company = tp.Company
 
 
-{ config(
-    alias='DICT_udc_tax_or_vat_percent',
-    materialized='view'
-) }}
-
-select * from {{ ref('MASTER_user_defined_codes_f005') }}
