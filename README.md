@@ -13,6 +13,20 @@ SNOWFLAKE_USER=your.email@pricesmart.com
 SNOWFLAKE_SCHEMA=YOURUSERNAME
 ```
 
+3. Run 
+
+```bash
+set -a
+source .env
+set +a
+```
+
+4. Run
+
+```bash
+dbt run-operation clone_raw_sources
+```
+
 
 ### Using the starter project
 
