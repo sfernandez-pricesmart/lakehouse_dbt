@@ -11,6 +11,14 @@ sources:
         description: "Raw membership account transaction header table replicated via Precisely"
         identifier: RAW_membership_transaction_header_f55637
         quote: true
+      - name: RAW_sales_executive_membership_commission_transactions_f57637
+        description: "Raw sales executive membership commission transactions table replicated via Precisely"
+        identifier: RAW_sales_executive_membership_commission_transactions_f57637
+        quote: true
+      - name: RAW_sales_executive_list_f57637l
+        description: "Raw sales executive list table replicated via Precisely"
+        identifier: RAW_sales_executive_list_f57637l
+        quote: true
 
   - name: peicom
     database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
@@ -38,5 +46,11 @@ sources:
         description: "Exchange rates dictionary table"
         identifier: DICT_exchange_rates
         quote: true
+    tables:
+      - name: DICT_membership_tax_by_country
+        description: "Membership tax by country dictionary table"
+        identifier: DICT_membership_tax_by_country
+        quote: true
+
 
 
