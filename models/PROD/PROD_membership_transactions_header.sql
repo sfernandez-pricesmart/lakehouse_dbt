@@ -52,7 +52,7 @@ with preprocessing_memb_header as (
         b."Tax_Percent" as "TaxPercent",
         cast(left(nullif(a."Cost_Center", ''), 2) as integer) as "CountryCode"
 
-    from {{ ref('MASTER_membership_account_transaction_header_f55637') }} a
+    from {{ ref('MASTER_membership_account_transactions_header_f55637') }} a
     left join {{ ref('DICT_udc_tax_or_vat_percent') }} b
         on left(a."Home_Cost_Center", 3) = b."Company_Code"
     left join {{ ref('MASTER_sales_executive_membership_commission_transactions_f57637') }} d
@@ -79,7 +79,7 @@ external_tax as (
         e."DIVIDER_DESK" as "DividerDesk"
 
     from preprocessing_memb_header p
-    left join {{ ref('DICT_membership_tax_by_country') }} e
+    left join {{ source('domo','DICT_membership_tax_by_country') }} e
         on p."CountryCode" = e."COUNTRY_CODE"
 
 ),

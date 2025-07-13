@@ -32,7 +32,7 @@ sources:
         quote: true
 
   - name: domo
-    database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
+    database: PLAYGROUND
     schema: SEFERNANDEZ
     quoting:
       identifier: true
@@ -41,12 +41,10 @@ sources:
         description: "Club and country names dictionary table"
         identifier: DICT_club_and_country_names
         quote: true
-    tables:
       - name: DICT_exchange_rates
         description: "Exchange rates dictionary table"
         identifier: DICT_exchange_rates
         quote: true
-    tables:
       - name: DICT_membership_tax_by_country
         description: "Membership tax by country dictionary table"
         identifier: DICT_membership_tax_by_country

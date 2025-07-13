@@ -1,5 +1,5 @@
 {{ config(
-    alias='MASTER_membership_account_transaction_header_f55637',
+    alias='MASTER_membership_account_transactions_header_f55637',
     materialized='view'
 ) }}
 
