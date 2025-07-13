@@ -1,0 +1,87 @@
+name: dbt Deploy to Snowflake
+
+on:
+  push:
+    branches:
+      - dev-code
+      - preprod-code
+      - prod  # or 'prod' if you use that branch name
+
+jobs:
+  dbt_run:
+    name: Run dbt models
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+
+      - name: Install dbt Snowflake
+        run: pip install dbt-snowflake
+
+      - name: Set environment target
+        id: set-target
+        run: |
+          if [[ "${{ github.ref_name }}" == "prod" ]]; then
+            echo "TARGET=prod" >> $GITHUB_ENV
+          elif [[ "${{ github.ref_name }}" == "preprod" ]]; then
+            echo "TARGET=preprod" >> $GITHUB_ENV
+          elif [[ "${{ github.ref_name }}" == "dev" ]]; then
+            echo "TARGET=dev" >> $GITHUB_ENV
+          fi
+
+      - name: Create dbt profile
+        run: |
+          mkdir -p ~/.dbt
+          cat <<EOF > ~/.dbt/profiles.yml
+          psmt_lakehouse:
+            target: $TARGET
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ADAM_DEVELOPER
+                database: PSMT_LAKEHOUSE_DEV
+                schema: AS400
+                warehouse: COMPUTE_WH
+                threads: 4
+                client_session_keep_alive: false
+              preprod:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ADAM_DEVELOPER
+                database: PSMT_LAKEHOUSE_PREPROD
+                schema: AS400
+                warehouse: COMPUTE_WH
+                threads: 4
+                client_session_keep_alive: false
+              prod:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ADAM_DEVELOPER
+                database: PSMT_LAKEHOUSE_PROD
+                schema: AS400
+                warehouse: COMPUTE_WH
+                threads: 4
+                client_session_keep_alive: false
+          EOF
+
+      - name: Debug dbt connection
+        run: dbt debug --target $TARGET
+
+      - name: Run dbt models
+        run: dbt run --target $TARGET
+
+      - name: Run dbt tests
+        run: dbt test --target $TARGET
