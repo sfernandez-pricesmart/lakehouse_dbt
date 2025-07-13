@@ -1,5 +1,19 @@
 Welcome to your new dbt project!
 
+
+## 👩‍💻 Developer Setup
+
+To run dbt with your sandbox schema:
+
+1. Clone the repo
+2. Create a `.env` file in the root:
+
+```env
+SNOWFLAKE_USER=your.email@pricesmart.com
+SNOWFLAKE_SCHEMA=YOURUSERNAME
+```
+
+
 ### Using the starter project
 
 Try running the following commands:

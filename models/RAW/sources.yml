@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: peicust
-    database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
-    schema: SEFERNANDEZ
+    database: PLAYGROUND
+    schema: "{{ var('sandbox_schema') }}"
     quoting:
       identifier: true
     tables:
@@ -21,19 +21,19 @@ sources:
         quote: true
 
   - name: peicom
-    database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
-    schema: SEFERNANDEZ
+    database: PLAYGROUND
+    schema: "{{ var('sandbox_schema') }}"
     quoting:
       identifier: true
     tables:
       - name: RAW_user_defined_codes_f0005
-        description: "Raw membership account transaction header table replicated via Precisely"
+        description: "Raw user defined codes table replicated via Precisely"
         identifier: RAW_user_defined_codes_f0005
         quote: true
 
   - name: domo
     database: PLAYGROUND
-    schema: SEFERNANDEZ
+    schema: "{{ var('sandbox_schema') }}"
     quoting:
       identifier: true
     tables:
@@ -49,6 +49,3 @@ sources:
         description: "Membership tax by country dictionary table"
         identifier: DICT_membership_tax_by_country
         quote: true
-
-
-
