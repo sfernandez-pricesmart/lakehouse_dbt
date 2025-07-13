@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: peicust
+    database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
+    schema: SEFERNANDEZ
+    quoting:
+      identifier: true
+    tables:
+      - name: RAW_membership_transaction_header_f55637
+        description: "Raw membership account transaction header table replicated via Precisely"
+        identifier: RAW_membership_transaction_header_f55637
+        quote: true
+
+  - name: peicom
+    database: PLAYGROUND  # e.g. CDC or the actual Snowflake DB name
+    schema: SEFERNANDEZ
+    quoting:
+      identifier: true
+    tables:
+      - name: RAW_user_defined_codes_f0005
+        description: "Raw membership account transaction header table replicated via Precisely"
+        identifier: RAW_user_defined_codes_f0005
+        quote: true

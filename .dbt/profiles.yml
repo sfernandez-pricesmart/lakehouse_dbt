@@ -1,0 +1,14 @@
+lakehouse_dbt:
+  target: sandbox
+  outputs:
+    sandbox:
+      type: snowflake
+      account: PRICESMART-DATA
+      user: sefernandez@pricesmart.com
+      role: ADAM_DEVELOPER
+      database: PLAYGROUND
+      schema: SEFERNANDEZ
+      warehouse: COMPUTE_WH
+      threads: 4
+      client_session_keep_alive: false
+      authenticator: externalbrowser
