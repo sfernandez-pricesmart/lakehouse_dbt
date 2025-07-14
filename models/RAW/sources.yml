@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: peicust
+    database: PLAYGROUND
+    schema: "{{ env_var('SANDBOX_SCHEMA') }}"
+    quoting:
+      identifier: true
+    tables:
+      - name: RAW_membership_transaction_header_f55637
+        identifier: RAW_membership_transaction_header_f55637
+        quote: true
+      - name: RAW_sales_executive_membership_commission_transactions_f57637
+        identifier: RAW_sales_executive_membership_commission_transactions_f57637
+        quote: true
+      - name: RAW_sales_executive_list_f57637l
+        identifier: RAW_sales_executive_list_f57637l
+        quote: true
+
+  - name: peicom
+    database: PLAYGROUND
+    schema: "{{ env_var('SANDBOX_SCHEMA') }}"
+    quoting:
+      identifier: true
+    tables:
+      - name: RAW_user_defined_codes_f0005
+        identifier: RAW_user_defined_codes_f0005
+        quote: true
+
+  - name: domo
+    database: PLAYGROUND
+    schema: "{{ env_var('SANDBOX_SCHEMA') }}"
+    quoting:
+      identifier: true
+    tables:
+      - name: DICT_club_and_country_names
+        identifier: DICT_club_and_country_names
+        quote: true
+      - name: DICT_exchange_rates
+        identifier: DICT_exchange_rates
+        quote: true
+      - name: DICT_membership_tax_by_country
+        identifier: DICT_membership_tax_by_country
+        quote: true
