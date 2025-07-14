@@ -12,3 +12,18 @@ lakehouse_dbt:
       threads: 4
       client_session_keep_alive: false
       authenticator: externalbrowser
+lakehouse_dbt_ci:
+  target: sandbox
+  outputs:
+    sandbox:
+      type: snowflake
+      account: PRICESMART-DATA
+      user: "{{ env_var('SANDBOX_USER') }}@pricesmart.com"
+      role: ADAM_DEVELOPER
+      database: PLAYGROUND
+      schema: "{{ env_var('SANDBOX_SCHEMA') }}"
+      warehouse: COMPUTE_WH
+      threads: 4
+      client_session_keep_alive: false
+      authenticator: snowflake_jwt
+      private_key_path: /tmp/snowflake_key.p8
